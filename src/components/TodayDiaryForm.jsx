@@ -89,7 +89,7 @@ function TodayDiaryForm() {
       </div>
       <button className="block mx-auto mt-7">
         <Link
-          to="/"
+          to="/detail"
           className="block bg-gradient-to-r from-[#bcf675] to-[#7ab82e] px-10 py-4 rounded-md text-lg font-semibold shadow-md text-center text-white"
         >
           감정 기록하기
