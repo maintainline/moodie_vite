@@ -1,13 +1,18 @@
 // 일일 감정
+import { Link } from "react-router-dom";
 import { MoodDiaryMock } from "../data/MoodDiaryMock";
 
 function WeeklyMoodPreview() {
   return (
-    <div className="w-96 bg-white mx-auto rounded-md shadow-sm p-4 mb-8">
+    <div className="w-96 bg-white mx-auto rounded-md shadow-md p-4 mb-11">
       <div className="flex justify-between items-center mb-3">
         <h1 className="text-md font-semibold text-[#4E741D]">나의감정기록</h1>
-        <p className="text-sm text-[#4E741D] font-semibold">더보기</p>
+        <Link to={"/"}>
+          <p className="text-sm text-[#4E741D] font-semibold">더보기</p>
+        </Link>
       </div>
+
+      {/* 일기 목록 불러오기 */}
       {MoodDiaryMock.map((item, idx) => (
         <div
           key={idx}

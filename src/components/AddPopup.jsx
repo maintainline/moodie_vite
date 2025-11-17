@@ -2,7 +2,7 @@ function AddPopup({ handleClick }) {
   return (
     <div
       onClick={handleClick}
-      className="fixed inset-0 bg-[#4A5739]/90 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-[#0c0f08dd] flex items-center justify-center z-50"
     >
       <div className="text-white rounded-xl flex flex-col items-center justify-center p-8 max-w-[800px] min-w-[400px] min-h-[400px] text-center">
         <h2 className="text-2xl md:text-3xl font-semibold mb-6">
