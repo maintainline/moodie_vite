@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { emotions } from "../data/EmotionData";
 import { emotionIcons } from "../data/EmotionIcons";
+import { supabase } from "../lib/supabase";
 
 function TodayDiaryForm() {
+  const navigate = useNavigate();
+
+  const [content, setContent] = useState("");
   const [selected, setSelected] = useState([]);
   const [selectedEmotion, setSelectedEmotion] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // 감정 클릭 시 선택/해제
   const toggleEmotion = emotion => {
@@ -16,28 +21,69 @@ function TodayDiaryForm() {
     );
   };
 
+  // 저장 함수
+  const handleSave = async () => {
+    if (!content.trim()) return alert("내용을 입력해주세요!");
+    if (selected.length === 0) return alert("감정 키워드를 선택해주세요!");
+    if (!selectedEmotion) return alert("감정 체크를 선택해주세요!");
+
+    setLoading(true);
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      alert("로그인이 필요합니다.");
+      setLoading(false);
+      return;
+    }
+
+    const newDiary = {
+      user_id: user.id,
+      content,
+      keywords: selected,
+      main_emotion: selectedEmotion,
+      char_count: content.length,
+    };
+
+    const { error } = await supabase.from("diaries").insert(newDiary);
+
+    setLoading(false);
+
+    if (error) {
+      console.error(error);
+      alert("저장에 실패했습니다.");
+      return;
+    }
+
+    alert("감정 기록이 저장되었습니다!");
+    navigate("/detail");
+  };
+
   return (
-    <form>
+    <form onSubmit={e => e.preventDefault()}>
       <div className="bg-white w-96 rounded-md py-8 px-5 mx-auto mt-7 shadow-md">
-        <h1 className="text-[#4E741D] font-semibold text-lg mb-3">
+        <h1 className="text-[#577C2A] font-semibold text-lg mb-3">
           오늘의 감정 기록
         </h1>
         <textarea
+          onChange={e => setContent(e.target.value)}
           rows={7}
           placeholder="오늘 하루 있었던 일, 느낀 감정, 생각들을 자유롭게
 적어보세요. 솔직한 마음이 가장 중요해요.."
           className="w-full p-3 border border-[#B6D98B] rounded-lg resize-none mb-4 placeholder:text-sm placeholder:text-[#4E741D] "
         />
-        <h1 className="text-[#4E741D] font-semibold text-sm mb-3">
+        <h1 className="text-[#577C2A] font-semibold text-sm mb-3">
           선택된 감정 키워드
         </h1>
         {/* 감정 키워드 출력 */}
-        <div className="flex flex-wrap gap-2 mb-4 min-h-[32px]">
+        <div className="flex flex-wrap gap-1 mb-4 min-h-[32px]">
           {selected.length > 0 ? (
             selected.map((emotion, idx) => (
               <span
                 key={idx}
-                className="mr-1 mb-1 py-1 px-2 gap-2 rounded-xl text-sm bg-[#EBFFD3]"
+                className="py-1 px-2 rounded-xl text-sm bg-[#EBFFD3]"
               >
                 {emotion}
               </span>
@@ -49,7 +95,7 @@ function TodayDiaryForm() {
           )}
         </div>
 
-        <h1 className="text-[#4E741D] font-semibold text-lg mb-3">
+        <h1 className="text-[#577C2A] font-semibold text-lg mb-3">
           감정 키워드 선택
         </h1>
         {emotions.map((emotion, idx) => (
@@ -58,7 +104,7 @@ function TodayDiaryForm() {
             key={idx}
             onClick={() => toggleEmotion(emotion)}
             className={`mr-1 mb-1 py-1 px-2 gap-2 rounded-xl text-sm bg-[#EBFFD3] transition
-            ${selected === emotion ? "bg-[#d5f5b0] border-[#6a8f3c] font-bold" : "bg-white border-gray-300"}`}
+            ${selected === emotion ? "bg-[#EBFFD3]  font-bold" : "bg-[#EBFFD3]"}`}
           >
             {emotion}
           </button>
@@ -80,20 +126,21 @@ function TodayDiaryForm() {
       `}
             >
               <img src={item.icon} alt={item.name} className="w-12 h-12 " />
-              <span className="text-sm text-[#4E741D] mt-1 font-semibold ">
+              <span className="text-sm text-[#577C2A] mt-1 font-semibold ">
                 {item.name}
               </span>
             </div>
           ))}
         </div>
       </div>
-      <button className="block mx-auto mt-7">
-        <Link
-          to="/detail"
-          className="block bg-gradient-to-r from-[#bcf675] to-[#7ab82e] px-10 py-4 rounded-md text-lg font-semibold shadow-md text-center text-white"
-        >
-          감정 기록하기
-        </Link>
+      {/* 저장 버튼 */}
+      <button
+        onClick={handleSave}
+        disabled={loading}
+        className="block mx-auto mt-7 bg-gradient-to-r from-[#bcf675] to-[#7ab82e]
+          px-10 py-4 rounded-md text-lg font-semibold shadow-md text-white"
+      >
+        {loading ? "저장 중..." : "감정 기록하기"}
       </button>
     </form>
   );

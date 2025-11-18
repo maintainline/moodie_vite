@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-types": "npx supabase gen types typescript --project-id jtcwkufeaxbzvpidlzfy > src/types/database.types.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.81.1",
     "moment": "^2.30.1",
     "react": "^19.2.0",
     "react-calendar": "^6.0.0",

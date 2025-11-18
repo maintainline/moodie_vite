@@ -5,6 +5,7 @@ import AddDiary from "./page/AddDiary";
 import TodayDiaryDetail from "./components/TodayDiaryDetail";
 import MoodieWeeklyRecord from "./page/MoodieWeeklyRecord";
 import MoodieAllRecord from "./page/MoodieAllRecord";
+import Login from "./page/Login";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<MoodieMain />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/add" element={<AddDiary />} />
           <Route path="/detail" element={<TodayDiaryDetail />} />
           <Route path="/weeklyrecord" element={<MoodieWeeklyRecord />} />

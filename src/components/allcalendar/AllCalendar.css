@@ -36,12 +36,12 @@
   background-color: transparent;
 }
 .custom-button {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #fff;
   border: none;
   background-color: #8dca41;
-  padding: 8px 12px;
+  padding: 4px 14px;
   border-radius: 6px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 }

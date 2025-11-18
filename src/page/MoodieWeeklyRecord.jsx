@@ -35,27 +35,36 @@ function MoodieWeeklyRecord() {
 
       {/* 주간 기록요약 */}
       <div className="w-96 bg-white mx-auto rounded-lg shadow-md mt-7 p-4 mb-11">
-        <div className="text-[#577c2a] font-semibold text-xl text-center mt-4">
+        <div className="text-[#577C2A] font-semibold text-xl text-center mt-4">
           1월 0주차 기록 현황
         </div>
-        <div className="flex gap-3 justify-center items-center mt-6">
+        <div className="flex gap-8 justify-center items-center mt-6">
           <div className="text-center">
             <div className="text-4xl font-bold text-[#778cff]">
-              1<span className="text-sm font-semibold text-[#314813]">개</span>
+              1<span className="text-sm font-semibold text-[#577C2A]"> 개</span>
             </div>
-            <p className="text-md mt-2 font-medium text-[#314813]">
+            <p className="text-md mt-2 font-semibold text-[#577C2A]">
               이번주 기록 수
             </p>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-[#ff676f]">
               30
-              <span className="text-sm font-semibold text-[#314813]">개</span>
+              <span className="text-sm font-semibold text-[#577C2A]"> 개</span>
             </div>
-            <p className="text-md mt-2 font-medium text-[#314813]">
+            <p className="text-md mt-2 font-semibold text-[#577C2A]">
               이번주 기록 글자 수
             </p>
           </div>
+        </div>
+        <div className="bg-[#E6FFC7] rounded-lg mt-7 p-4">
+          <h1 className="text-[#314813] text-sm font-semibold">
+            이번 주 인사이트
+          </h1>
+          <p className="text-xs mt-4">
+            이번주는 총 000글자 적으셨네요~ 앞으로 더 열심히 적어보세용 이번달은
+            총 000글자 적으셨네요~ 앞으로 더 열심히 적어보세용
+          </p>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@ function MoodieCategoryBt() {
               ? "bg-[#8dca41] text-white"
               : "bg-white text-[#6b9931]"
           }`}
-          onClick={() => handleClickMain(1, "/record")}
+          onClick={() => handleClickMain(1, "/weeklyrecord")}
         >
           기록 보기
         </button>
@@ -67,7 +67,7 @@ function MoodieCategoryBt() {
               ? "bg-white text-[#6b9931] shadow"
               : "bg-[#8dca41] text-white"
           }`}
-          onClick={() => handleClickSub(0, "/record")}
+          onClick={() => handleClickSub(0, "/weeklyrecord")}
         >
           주간 기록
         </button>
