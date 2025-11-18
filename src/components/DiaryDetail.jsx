@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function TodayDiaryDetail() {
+export default function DiaryDetail() {
   return (
     <div className="relative  mx-auto py-6 bg-[#f7ffed] min-h-screen mt-18">
       {/* 상단 이모지 기분 */}
