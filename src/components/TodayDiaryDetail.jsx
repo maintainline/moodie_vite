@@ -84,7 +84,7 @@ export default function TodayDiaryDetail() {
       {/* 주간기록 화면으로 */}
       <button className="block mx-auto">
         <Link
-          to="/"
+          to="/weeklyrecord"
           className="block bg-gradient-to-r from-[#bcf675] to-[#7ab82e] px-10 py-4 rounded-md text-lg font-semibold shadow-md text-center text-white"
         >
           주간 기록 화면으로

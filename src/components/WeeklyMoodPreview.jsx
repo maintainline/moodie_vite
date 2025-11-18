@@ -6,14 +6,16 @@ function WeeklyMoodPreview() {
   return (
     <div className="w-96 bg-white mx-auto rounded-md shadow-md p-4 mb-11">
       <div className="flex justify-between items-center mb-3">
-        <h1 className="text-md font-semibold text-[#4E741D]">나의감정기록</h1>
-        <Link to={"/"}>
+        <h1 className="text-md font-semibold text-[#4E741D]">
+          이번주 나의 감정기록
+        </h1>
+        <Link to={"/weeklyrecord"}>
           <p className="text-sm text-[#4E741D] font-semibold">더보기</p>
         </Link>
       </div>
 
       {/* 일기 목록 불러오기 */}
-      {MoodDiaryMock.map((item, idx) => (
+      {MoodDiaryMock.slice(0, 7).map((item, idx) => (
         <div
           key={idx}
           className="grid grid-cols-[30px_35px_1fr_70px] md:grid-cols-[20px_40px_1fr_60px] items-center text-center text-sm py-2 border-b border-[#8DCA42]/50"
