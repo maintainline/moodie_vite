@@ -1,0 +1,129 @@
+.react-calendar {
+  position: relative;
+  width: 390px;
+  height: 100%;
+  background: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.react-calendar__navigation {
+  position: absolute;
+  width: 390px;
+  top: 0;
+  transform: translateY(-35px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.react-calendar__navigation__label {
+  color: #314813 !important;
+  position: absolute;
+  text-align: left;
+  pointer-events: none;
+  background-color: transparent;
+}
+.react-calendar__navigation__prev-button {
+  position: absolute;
+  right: 75px;
+  background-color: transparent;
+}
+.react-calendar__navigation__next-button {
+  position: absolute;
+  right: 14px;
+  background-color: transparent;
+}
+.custom-button {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  background-color: #8dca41;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none;
+}
+.react-calendar__navigation button {
+  font-weight: bold;
+  border: none;
+  font-size: 28px;
+}
+
+.react-calendar__month-view__weekdays {
+  display: flex;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(78, 116, 29, 0.5);
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  color: #4e741d;
+  border-right: 1px solid rgba(78, 116, 29, 0.5);
+}
+
+.react-calendar__month-view__weekdays__weekday:first-child {
+  color: #ed7777;
+}
+
+.react-calendar__month-view__weekdays__weekday:last-child {
+  color: #4985b7;
+  border-right: none;
+}
+
+.react-calendar__tile {
+  height: 60px;
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(78, 116, 29, 0.1);
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(78, 116, 29, 0.5);
+  border-right: 1px solid rgba(78, 116, 29, 0.5);
+}
+/*  토요일 오른쪽 줄 제거 */
+.react-calendar__tile:nth-child(7n) {
+  border-right: none;
+}
+/* 맨 아래 마지막 줄 제거 */
+.react-calendar__month-view__days__day:nth-last-child(-n + 7) {
+  border-bottom: none;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: rgba(78, 116, 29, 0.1);
+}
+
+/* 이전 다음달 날짜 숨김 */
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: transparent;
+  pointer-events: none;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: rgba(78, 116, 29, 1);
+}
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  border: none;
+}
+.react-calendar__tile--active {
+  background: none !important;
+  color: rgba(78, 116, 29, 0.1);
+}
+
+.react-calendar abbr {
+  display: inline-block; /* 크기 조정하려면 inline-block 또는 block 필요 */
+  width: 30px; /* 원하는 너비 */
+  text-align: center; /* 숫자 가운데 정렬 */
+}
