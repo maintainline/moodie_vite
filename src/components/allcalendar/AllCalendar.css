@@ -78,6 +78,7 @@
 }
 
 .react-calendar__tile {
+  position: relative;
   height: 60px;
   font-size: 30px;
   font-weight: 600;

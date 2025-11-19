@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
 function MoodieCategoryBt() {
   const [activeMain, setActiveMain] = useState(1);
@@ -9,9 +10,60 @@ function MoodieCategoryBt() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleClickMain = (index, route) => {
+  const handleClickMain = async index => {
     setActiveMain(index);
-    navigate(route);
+
+    if (index === 0) {
+      // 작성하기 버튼 클릭
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // 오늘 날짜 시작/끝
+      const today = new Date();
+      const start = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+        0,
+        0,
+        0,
+      );
+      const end = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+        23,
+        59,
+        59,
+      );
+
+      const { data: diaries, error } = await supabase
+        .from("diaries")
+        .select("id")
+        .eq("user_id", user.id)
+        .gte("created_at", start.toISOString())
+        .lte("created_at", end.toISOString());
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      if (diaries.length > 0) {
+        // 오늘 작성된 일기가 있으면 확인 팝업
+        navigate(`/diary/${diaries[0].id}`, {
+          state: { fromWeekCalendar: true }, // 주간 기록 화면에서 왔음을 표시
+        });
+      } else {
+        // 작성 페이지로 이동
+        navigate("/add");
+        return;
+      }
+    } else if (index === 1) {
+      navigate("/weeklyrecord");
+    }
   };
 
   const handleClickSub = (index, route) => {
@@ -33,7 +85,7 @@ function MoodieCategoryBt() {
   }, [location.pathname]);
 
   return (
-    <div className="w-[390px] mx-auto">
+    <div className="w-96 mx-auto">
       {/* 메인 버튼 */}
       <div className="flex justify-between w-96 mx-auto">
         <button
@@ -42,7 +94,7 @@ function MoodieCategoryBt() {
               ? "bg-[#8dca41] text-white"
               : "bg-white text-[#6b9931]"
           }`}
-          onClick={() => handleClickMain(0, "/add")}
+          onClick={() => handleClickMain(0)}
         >
           작성하기
         </button>
@@ -53,7 +105,7 @@ function MoodieCategoryBt() {
               ? "bg-[#8dca41] text-white"
               : "bg-white text-[#6b9931]"
           }`}
-          onClick={() => handleClickMain(1, "/weeklyrecord")}
+          onClick={() => handleClickMain(1)}
         >
           기록 보기
         </button>
