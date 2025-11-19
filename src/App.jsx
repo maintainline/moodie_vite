@@ -2,7 +2,7 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import MoodieMain from "./page/MoodieMain";
 import AddDiary from "./page/AddDiary";
-import DiaryDetail from "./components/DiaryDetail";
+import DiaryDetail from "./page/DiaryDetail";
 import MoodieWeeklyRecord from "./page/MoodieWeeklyRecord";
 import MoodieAllRecord from "./page/MoodieAllRecord";
 import Login from "./page/Login";
@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<MoodieMain />} />
           <Route path="/login" element={<Login />} />
           <Route path="/add" element={<AddDiary />} />
-          <Route path="/diary" element={<DiaryDetail />} />
+          <Route path="/diary/:id" element={<DiaryDetail />} />
           <Route path="/weeklyrecord" element={<MoodieWeeklyRecord />} />
           <Route path="/allrecord" element={<MoodieAllRecord />} />
         </Routes>

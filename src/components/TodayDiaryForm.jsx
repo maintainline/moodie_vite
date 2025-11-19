@@ -58,7 +58,7 @@ function TodayDiaryForm() {
     }
 
     alert("감정 기록이 저장되었습니다!");
-    navigate("/detail");
+    navigate("/diary");
   };
 
   return (
