@@ -21,6 +21,7 @@ html {
 body {
   font-family: "Noto Sans", sans-serif;
   background-color: #f7ffed;
+  overflow-x: hidden;
 }
 
 /*  모달 애니메이션  */
