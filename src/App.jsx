@@ -6,6 +6,7 @@ import DiaryDetail from "./page/DiaryDetail";
 import MoodieWeeklyRecord from "./page/MoodieWeeklyRecord";
 import MoodieAllRecord from "./page/MoodieAllRecord";
 import Login from "./page/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -15,10 +16,39 @@ function App() {
         <Routes>
           <Route path="/" element={<MoodieMain />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/add" element={<AddDiary />} />
-          <Route path="/diary/:id" element={<DiaryDetail />} />
-          <Route path="/weeklyrecord" element={<MoodieWeeklyRecord />} />
-          <Route path="/allrecord" element={<MoodieAllRecord />} />
+
+          <Route
+            path="/add"
+            element={
+              <ProtectedRoute>
+                <AddDiary />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/diary/:id"
+            element={
+              <ProtectedRoute>
+                <DiaryDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/weeklyrecord"
+            element={
+              <ProtectedRoute>
+                <MoodieWeeklyRecord />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/allrecord"
+            element={
+              <ProtectedRoute>
+                <MoodieAllRecord />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

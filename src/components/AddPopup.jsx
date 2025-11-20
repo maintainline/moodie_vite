@@ -4,13 +4,16 @@ function AddPopup({ handleClick }) {
       onClick={handleClick}
       className="fixed inset-0 bg-[#0c0f08dd] flex items-center justify-center z-50"
     >
-      <div className="text-white rounded-xl flex flex-col items-center justify-center p-8 max-w-[800px] min-w-[400px] min-h-[400px] text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-6">
+      <div
+        className="text-white rounded-xl flex flex-col items-center justify-center p-8 max-w-[800px] w-[90%] min-w-[300px] min-h-[300px] text-center
+                      xs:p-4 xs:min-w-[280px] xs:min-h-[280px]"
+      >
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 xs:text-xl">
           ✍ <br />
           <br /> 기록을 시작하기전에 <br /> 잠시 읽어주세요.
         </h2>
 
-        <div className="text-base md:text-lg space-y-4 mb-6 font-light">
+        <div className="text-base md:text-lg space-y-4 mb-6 font-light xs:text-sm">
           <p>
             감정을 기록하는 ‘무디’ 는 작성 후
             <br />
@@ -27,7 +30,7 @@ function AddPopup({ handleClick }) {
           <p>그럼, 기록하러 가볼까요?</p>
         </div>
 
-        <button className="mt-4 text-white font-semibold py-2 px-6 rounded-lg transition-colors">
+        <button className="mt-4 text-white font-semibold py-2 px-6 rounded-lg transition-colors xs:py-1 xs:px-4 xs:text-sm">
           화면을 터치하여 기록 시작하기
         </button>
       </div>
