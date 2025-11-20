@@ -5,11 +5,13 @@ import AllRecordBoxCard from "../components/AllRecordBoxCard";
 import MoodieCategoryBt from "../components/MoodieCategoryBt";
 import moment from "moment";
 import { supabase } from "../lib/supabase";
+import { diaryCountComments } from "../data/diaryCountComments ";
 
 function MoodieAllRecord() {
   const [currentMonth, setCurrentMonth] = useState(moment().month() + 1);
   const [currentYear, setCurrentYear] = useState(moment().year());
   const [monthlyCount, setMonthlyCount] = useState(0);
+  const [diaryCountMessage, setDiaryCountMessage] = useState("");
 
   useEffect(() => {
     const fetchMonthlyCount = async () => {
@@ -33,7 +35,12 @@ function MoodieAllRecord() {
         return;
       }
 
-      setMonthlyCount(data?.length || 0);
+      const count = data?.length || 0;
+      setMonthlyCount(count);
+
+      // 일기 갯수에 따른 멘트 가져오기
+      const clampedCount = Math.min(count, 31); // 31 이상이면 31로 처리
+      setDiaryCountMessage(diaryCountComments[clampedCount]);
     };
 
     fetchMonthlyCount();
@@ -63,16 +70,17 @@ function MoodieAllRecord() {
           </h2>
         </div>
         <div className="mt-3 mx-auto text-center text-[#314813] text-sm w-96 px-9">
-          <p>
-            차근차근 감정을 기록하며 자신을 돌보고 있어요! 꾸준히 작성하여 큰
-            변화를 만들어 보아요👍
-          </p>
+          <p>{diaryCountMessage}</p>
         </div>
       </div>
 
       {/* 0 월 카드 박스 */}
       <div className="mt-9">
-        <AllRecordBoxCard year={currentYear} month={currentMonth} />
+        <AllRecordBoxCard
+          year={currentYear}
+          month={currentMonth}
+          monthlyCount={monthlyCount}
+        />
       </div>
     </div>
   );

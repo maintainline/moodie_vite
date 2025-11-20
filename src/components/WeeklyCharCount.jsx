@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import { getWeekRangeSundayToSaturday } from "./utils/dateUtils";
+import { getLengthComment } from "./utils/getLengthComment";
 
 export default function WeeklyCharCount() {
   const [totalChars, setTotalChars] = useState(0);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     loadWeeklyCharCount();
@@ -29,6 +31,7 @@ export default function WeeklyCharCount() {
       data?.reduce((sum, cur) => sum + (cur.char_count || 0), 0) || 0;
 
     setTotalChars(total);
+    setMessage(getLengthComment(total));
   }
 
   return (
@@ -45,11 +48,7 @@ export default function WeeklyCharCount() {
           </div>
         </div>
         <div className="bg-[#E6FFC7] w-full rounded-lg shadow-md py-5 px-6">
-          <p className="text-[12px] font-medium">
-            벌써 이만큼이나 적으셨네요! 앞으로 더 많이 적으면 더 많이 적을 수
-            있어요~ 조금만 더 힘내세요!벌써 이만큼이나 적으셨네요! 앞으로 더
-            많이 적으면 더 많이 적을 수 있어요~ 조금만 더 힘내세요!
-          </p>
+          <p className="text-[12px] font-medium leading-5">{message} </p>
         </div>
       </div>
     </div>
