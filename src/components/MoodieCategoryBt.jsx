@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import TodaycompletedModal from "./modal/TodaycompletedModal";
 
 function MoodieCategoryBt() {
+  const [showModal, setShowModal] = useState(false);
+  const [todayDiaryId, setTodayDiaryId] = useState(null);
   const [activeMain, setActiveMain] = useState(1);
   const [activeSub, setActiveSub] = useState(0);
   const navigate = useNavigate();
@@ -51,16 +54,15 @@ function MoodieCategoryBt() {
         return;
       }
 
+      // 오늘 작성된 일기가 있으면 확인 팝업
       if (diaries.length > 0) {
-        // 오늘 작성된 일기가 있으면 확인 팝업
-        navigate(`/diary/${diaries[0].id}`, {
-          state: { fromWeekCalendar: true }, // 주간 기록 화면에서 왔음을 표시
-        });
-      } else {
-        // 작성 페이지로 이동
-        navigate("/add");
+        setTodayDiaryId(diaries[0].id);
+        setShowModal(true);
         return;
       }
+      // 작성 페이지로 이동
+      navigate("/add");
+      return;
     } else if (index === 1) {
       navigate("/weeklyrecord");
     }
@@ -135,6 +137,23 @@ function MoodieCategoryBt() {
           전체 기록
         </button>
       </div>
+      {showModal && (
+        <TodaycompletedModal
+          title={
+            <>
+              오늘 이미 작성한 기록이 있어요! <br />
+              지금 보러 갈까요?
+            </>
+          }
+          onClose={() => setShowModal(false)}
+          onConfirm={() => {
+            navigate(`/diary/${todayDiaryId}`, {
+              state: { fromWeekCalendar: true },
+            });
+            setShowModal(false);
+          }}
+        />
+      )}
     </div>
   );
 }

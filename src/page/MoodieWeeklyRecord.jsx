@@ -8,15 +8,23 @@ import {
   getWeekRangeSundayToSaturday,
 } from "../components/utils/dateUtils";
 import { supabase } from "../lib/supabase";
+import { getLengthComment } from "../components/utils/getLengthComment";
+import { getDiaryCountComment } from "../components/utils/getDiaryCountComment";
 
 function MoodieWeeklyRecord() {
   const [user, setUser] = useState(null);
   const [weeklyCount, setWeeklyCount] = useState(0);
   const [weeklyCharCount, setWeeklyCharCount] = useState(0);
+  const [message, setMessage] = useState("");
+  const [diaryCountMessage, setDiaryCountMessage] = useState("");
 
   useEffect(() => {
     fetchWeeklyData();
   }, []);
+
+  useEffect(() => {
+    setDiaryCountMessage(getDiaryCountComment(weeklyCount));
+  }, [weeklyCount]);
 
   async function fetchWeeklyData() {
     // 로그인 유저 가져오기
@@ -45,6 +53,7 @@ function MoodieWeeklyRecord() {
     const totalChars =
       data?.reduce((sum, item) => sum + (item.char_count || 0), 0) || 0;
     setWeeklyCharCount(totalChars);
+    setMessage(getLengthComment(totalChars));
   }
 
   const week = getWeekOfMonth();
@@ -67,10 +76,7 @@ function MoodieWeeklyRecord() {
           </h2>
         </div>
         <div className="mt-3 mx-auto text-center text-[#314813] text-sm w-96 px-9">
-          <p>
-            차근차근 감정을 기록하며 자신을 돌보고 있어요! 꾸준히 작성하여 큰
-            변화를 만들어 보아요👍
-          </p>
+          <p>{diaryCountMessage}</p>
         </div>
       </div>
 
@@ -86,21 +92,21 @@ function MoodieWeeklyRecord() {
         </div>
         <div className="flex gap-8 justify-center items-center mt-6">
           <div className="text-center">
-            <div className="text-4xl font-bold text-[#778cff]">
+            <div className="text-6xl font-bold text-[#7ab3fd]">
               {weeklyCount}
               <span className="text-sm font-semibold text-[#577C2A]"> 개</span>
             </div>
-            <p className="text-md mt-2 font-semibold text-[#577C2A]">
-              이번주 기록 수
+            <p className="text-xl mt-2 font-semibold text-[#577C2A]">
+              이번주 기록
             </p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-[#ff676f]">
+            <div className="text-6xl font-bold text-[#ff676f]">
               {weeklyCharCount}
               <span className="text-sm font-semibold text-[#577C2A]"> 자</span>
             </div>
-            <p className="text-md mt-2 font-semibold text-[#577C2A]">
-              이번주 기록 글자 수
+            <p className="text-xl mt-2 font-semibold text-[#577C2A]">
+              총 작성 글자수
             </p>
           </div>
         </div>
@@ -108,10 +114,10 @@ function MoodieWeeklyRecord() {
           <h1 className="text-[#314813] text-sm font-semibold">
             이번 주 인사이트
           </h1>
-          <p className="text-xs mt-4">
-            이번주는 총 {weeklyCharCount} 글자 적으셨네요~ 앞으로 더 열심히
-            적어보세용 이번달은 총 000글자 적으셨네요~ 앞으로 더 열심히
-            적어보세용
+          <p className="text-xs mt-4 leading-5">
+            이번주는 총 {weeklyCharCount} 글자 적으셨네요~
+            <br />
+            {message}
           </p>
         </div>
       </div>
