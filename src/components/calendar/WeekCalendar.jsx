@@ -83,20 +83,20 @@ const WeekCalendar = () => {
   };
 
   return (
-    <div className="mx-auto w-96 rounded-lg bg-white p-4 shadow-md">
+    <div className="mx-auto w-[343px] sm:w-96 rounded-lg bg-white p-3 sm:p-4 shadow-md">
       {/* 요일 */}
-      <div className="flex">
+      <div className="flex text-xs sm:text-base">
         {weekDays.map((day, i) => (
           <div
             key={day}
             className={`flex-1 text-center font-extrabold border-r last:border-r-0
-            ${
-              i === 0
-                ? "text-[#ed7777]"
-                : i === 6
-                  ? "text-[#4985b7]"
-                  : "text-[#4e741d]"
-            }`}
+        ${
+          i === 0
+            ? "text-[#ed7777]"
+            : i === 6
+              ? "text-[#4985b7]"
+              : "text-[#4e741d]"
+        }`}
           >
             {day}
           </div>
@@ -108,14 +108,7 @@ const WeekCalendar = () => {
       {/* 날짜 + 감정 */}
       <div className="flex">
         {weekDates.map(date => {
-          const isToday =
-            date.getDate() === today.getDate() &&
-            date.getMonth() === today.getMonth() &&
-            date.getFullYear() === today.getFullYear();
-
           const dateStr = moment(date).format("YYYY-MM-DD");
-
-          // 해당 날짜 mood 찾기
           const dayMood = weekMoods.find(item => item.date === dateStr);
           const emotionIcon = dayMood
             ? emotionIcons.find(e => e.name === dayMood.main_emotion)?.icon
@@ -124,17 +117,19 @@ const WeekCalendar = () => {
           return (
             <div
               key={date.toISOString()}
-              className={`relative flex-1 border-r last:border-r-0 py-1 text-center text-2xl font-extrabold`}
+              className="relative flex-1 border-r last:border-r-0 py-1 text-center"
             >
               {/* 날짜 숫자 */}
-              <span className="text-[#4E741D]/10">{date.getDate()}</span>
+              <span className="text-[#4E741D]/10 text-lg sm:text-2xl font-extrabold">
+                {date.getDate()}
+              </span>
 
               {/* 감정 아이콘 */}
               {emotionIcon && (
                 <img
                   src={emotionIcon}
                   alt={dayMood.main_emotion}
-                  className="absolute top-1 left-1/2 transform -translate-x-1/2 w-9 h-9 cursor-pointer"
+                  className="absolute top-1 sm:top-1.5 left-1/2 transform -translate-x-1/2 w-7 sm:w-9 h-7 sm:h-9 cursor-pointer"
                   onClick={() => goToDiaryByDate(dateStr)}
                 />
               )}

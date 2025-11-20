@@ -30,7 +30,7 @@ function WeeklyMoodPreview() {
   }
 
   return (
-    <div className="w-96 bg-white mx-auto rounded-md shadow-md p-4 mb-11">
+    <div className="w-full max-w-[400px] mx-auto bg-white rounded-md shadow-md p-4 mb-11 overflow-hidden">
       <div className="flex justify-between items-center mb-3">
         <h1 className="text-md font-semibold text-[#4E741D]">
           이번주 나의 감정기록
@@ -40,7 +40,7 @@ function WeeklyMoodPreview() {
         </Link>
       </div>
 
-      {/* 일기 목록 불러오기 */}
+      {/* 일기 목록 */}
       {!user ? (
         <div className="flex flex-col items-center justify-center py-10 text-center text-gray-500">
           <p className="mb-4">로그인 후 감정 기록을 확인할 수 있어요.</p>

@@ -48,8 +48,8 @@ export default function DiaryDetail() {
   }
 
   return (
-    <div className="relative  mx-auto py-6 bg-[#f7ffed] min-h-screen mt-18">
-      {/* 상단 이모지 기분 */}
+    <div className="relative mx-auto py-6 bg-[#f7ffed] min-h-screen mt-18 overflow-hidden px-4">
+      {/* 상단 이모지 + 제목 */}
       <div className="mt-20 flex flex-col items-center">
         <img
           src={`/images/${diary.main_emotion || "기쁨"}.svg`}
@@ -57,18 +57,18 @@ export default function DiaryDetail() {
           className="h-20 w-20 mb-6"
         />
 
-        <h2 className="w-96 text-center font-bold text-2xl text-[#4E741D] break-normal whitespace-normal">
+        <h2 className="w-full max-w-[400px] text-center font-bold text-xl sm:text-2xl  text-[#4E741D] break-words whitespace-normal">
           {randomTitle}
         </h2>
 
-        <div className="text-[#374723] font-bold text-sm text-center mt-2">
+        <div className="text-[#374723] font-bold text-xs sm:text-sm text-center mt-2">
           이런날은 나에게 작은 선물을 주는 것도 좋아요!
         </div>
       </div>
 
-      {/* 중간 일기 내용 */}
-      <div className="bg-white w-96 rounded-lg shadow-md mt-8 mx-auto py-9 px-6 mb-8">
-        <div className=" text-lg font-semibold text-[#4E741D] mb-5">
+      {/* 일기 본문 */}
+      <div className=" bg-white w-full max-w-[400px] rounded-lg shadow-md mt-8 mx-auto py-9 px-6 mb-8">
+        <div className="text-lg font-semibold text-[#4E741D] mb-5">
           {new Date(diary.created_at).toLocaleDateString("ko-KR", {
             year: "numeric",
             month: "long",
@@ -76,11 +76,14 @@ export default function DiaryDetail() {
             weekday: "long",
           })}
         </div>
+
         <div className="border-b border-[#4E741D]/50 mb-5" />
-        <div className="text-sm text-[#4E741D] font-medium">
+
+        <div className="text-sm text-[#4E741D] font-medium whitespace-pre-line">
           {diary.content}
         </div>
-        <div className="mt-5 flex gap-1">
+
+        <div className="mt-5 flex flex-wrap gap-1">
           {diary.keywords?.map(key => (
             <div
               key={key}
@@ -92,7 +95,7 @@ export default function DiaryDetail() {
         </div>
       </div>
 
-      {/* 오늘의 인사이트 내용  오늘 글자수 / 주간 작성횟수*/}
+      {/* 오늘의 인사이트 */}
       {fromWeekCalendar && (
         <TodayInsight
           charCount={diary.char_count}
@@ -100,18 +103,18 @@ export default function DiaryDetail() {
         />
       )}
 
-      {/* 이번주 지금까지 글자 합산수 */}
+      {/* 이번주 글자 합산 */}
       {fromWeekCalendar && <WeeklyCharCount />}
 
-      {/* 주간기록 화면으로 */}
-      <button className="block mx-auto">
+      {/* 뒤로가기 버튼 */}
+      <div className="flex justify-center mt-6 mb-10">
         <Link
           to={fromWeekCalendar ? "/weeklyrecord" : "/allrecord"}
           className="block bg-gradient-to-r from-[#bcf675] to-[#7ab82e] px-10 py-4 rounded-md text-lg font-semibold shadow-md text-center text-white"
         >
           {fromWeekCalendar ? "주간 기록 화면으로" : "전체 기록 화면으로"}
         </Link>
-      </button>
+      </div>
     </div>
   );
 }

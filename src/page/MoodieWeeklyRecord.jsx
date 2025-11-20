@@ -60,61 +60,71 @@ function MoodieWeeklyRecord() {
   const month = new Date().getMonth() + 1;
 
   return (
-    <div>
+    <div className="w-full">
       <div className="bg-[linear-gradient(180deg,rgba(247,255,237,1)_40%,rgba(208,249,157,1)_100%)] pt-20 pb-11">
         {/*  카테고리 버튼 */}
         <MoodieCategoryBt />
+
         {/* ~월 ~주차 기록 */}
         <MonthWeekTitle />
+
         {/* 주간 캘린더 */}
         <WeekCalendar />
+
         {/* 주간 기록 현황 */}
-        <div className="mt-11">
-          <h2 className="text-center text-[#314813] text-xl ">
+        <div className="mt-11 px-4">
+          <h2 className="text-center text-[#314813] text-lg sm:text-xl break-keep">
             7개 중 <span className="font-bold">{weeklyCount} 개의 기록</span>을
             작성완료 했어요.
           </h2>
         </div>
-        <div className="mt-3 mx-auto text-center text-[#314813] text-sm w-96 px-9">
-          <p>{diaryCountMessage}</p>
+
+        <div className="mt-3 mx-auto text-center text-[#314813] text-sm w-full max-w-[384px] px-6">
+          <p className="break-keep">{diaryCountMessage}</p>
         </div>
       </div>
 
       {/* 기록 카드 박스 */}
-      <div className="mt-9">
+      <div className="mt-9 px-4">
         <DiaryCardBox />
       </div>
 
       {/* 주간 기록요약 */}
-      <div className="w-96 bg-white mx-auto rounded-lg shadow-md mt-7 p-4 mb-11">
-        <div className="text-[#577C2A] font-semibold text-xl text-center mt-4">
+      <div className="w-[343px] sm:w-full max-w-[384px] bg-white mx-auto rounded-lg shadow-md mt-7 p-4 mb-11">
+        {/* 제목 */}
+        <div className="text-[#577C2A] font-semibold text-lg sm:text-xl text-center mt-4">
           {month}월 {week}주차 기록 현황
         </div>
-        <div className="flex gap-8 justify-center items-center mt-6">
+
+        {/* 기록 수 */}
+        <div className="flex gap-4 sm:gap-8 justify-center items-center mt-6">
           <div className="text-center">
-            <div className="text-6xl font-bold text-[#7ab3fd]">
+            <div className="text-4xl sm:text-5xl font-bold text-[#7ab3fd]">
               {weeklyCount}
               <span className="text-sm font-semibold text-[#577C2A]"> 개</span>
             </div>
-            <p className="text-xl mt-2 font-semibold text-[#577C2A]">
+            <p className="text-base sm:text-lg mt-2 font-semibold text-[#577C2A]">
               이번주 기록
             </p>
           </div>
+
           <div className="text-center">
-            <div className="text-6xl font-bold text-[#ff676f]">
+            <div className="text-4xl sm:text-5xl font-bold text-[#ff676f]">
               {weeklyCharCount}
               <span className="text-sm font-semibold text-[#577C2A]"> 자</span>
             </div>
-            <p className="text-xl mt-2 font-semibold text-[#577C2A]">
+            <p className="text-base sm:text-lg mt-2 font-semibold text-[#577C2A]">
               총 작성 글자수
             </p>
           </div>
         </div>
+
+        {/* 인사이트 */}
         <div className="bg-[#E6FFC7] rounded-lg mt-7 p-4">
-          <h1 className="text-[#314813] text-sm font-semibold">
+          <h1 className="text-[#314813] text-sm sm:text-base font-semibold">
             이번 주 인사이트
           </h1>
-          <p className="text-xs mt-4 leading-5">
+          <p className="text-xs sm:text-sm mt-4 leading-5 break-keep">
             이번주는 총 {weeklyCharCount} 글자 적으셨네요~
             <br />
             {message}

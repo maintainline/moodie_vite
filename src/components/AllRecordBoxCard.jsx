@@ -52,48 +52,58 @@ function AllRecordBoxCard({ year, month, monthlyCount }) {
   }, [year, month]);
 
   return (
-    <div className="bg-white mx-auto w-96 rounded-lg shadow-md p-4 mb-14">
-      <h1 className="text-[#577C2A] text-xl font-semibold text-center mt-6 ">
+    <div className="bg-white mx-auto w-[343px] sm:w-96 max-w-full rounded-lg shadow-md p-4 mb-14">
+      <h1 className="text-[#577C2A] text-xl sm:text-xl lg:text-2xl font-semibold text-center mt-6">
         {month}월 모든 기록 요약
       </h1>
 
       <div className="mt-5 items-end justify-center">
-        <div className="flex items-center justify-center gap-10">
-          {/*  글자수 */}
+        <div className="mt-5 flex flex-row items-end justify-center gap-4 sm:gap-10">
+          {/* 글자수 */}
           <div className="text-center">
-            <div className="text-6xl font-bold text-[#7ab3fd]">
+            <div className="text-4xl sm:text-6xl font-bold text-[#7ab3fd]">
               {monthlyCount}
-              <span className="text-sm font-semibold text-[#577C2A]"> 개</span>
+              <span className="text-sm sm:text-base font-semibold text-[#577C2A]">
+                개
+              </span>
             </div>
-            <p className="text-xl mt-2 font-semibold text-[#577C2A]">
+            <p className="text-base sm:text-xl mt-2 font-semibold text-[#577C2A]">
               이번달 기록
             </p>
           </div>
-          {/* 이번달 작성갯수 */}
+
+          {/* 글자수 */}
           <div className="text-center">
-            <div className="text-6xl font-bold text-[#ff676f]">
+            <div className="text-4xl sm:text-6xl font-bold text-[#ff676f]">
               {totalChars}
-              <span className="text-sm font-semibold text-[#577C2A]"> 자</span>
+              <span className="text-sm sm:text-base font-semibold text-[#577C2A]">
+                자
+              </span>
             </div>
-            <p className="text-xl mt-2 font-semibold text-[#577C2A]">
+            <p className="text-base sm:text-xl mt-2 font-semibold text-[#577C2A]">
               총 작성 글자수
             </p>
           </div>
         </div>
-        {/*  감정수 */}
-        <div className="flex gap-6 justify-center mt-9">
+
+        {/* 감정 수 */}
+        <div className="flex gap-4 sm:gap-6 justify-center mt-6 sm:mt-9 flex-wrap">
           {emotionIcons.map((item, idx) => (
             <div
               key={idx}
               className="flex flex-col items-center justify-center"
             >
               <div className="relative">
-                <img src={item.icon} alt={item.name} className="w-10 h-10" />
-                <span className="absolute -top-2 -right-3  bg-[#ff545c] py-1 px-2 rounded-full text-white text-xs font-semibold">
+                <img
+                  src={item.icon}
+                  alt={item.name}
+                  className="w-8 sm:w-10 h-8 sm:h-10"
+                />
+                <span className="absolute -top-2 -right-2 sm:-top-2 sm:-right-3 bg-[#ff545c] py-1 px-2 rounded-full text-white text-xs sm:text-sm font-semibold">
                   {emotionCounts[item.name] || 0}
                 </span>
               </div>
-              <p className="text-md mt-2 font-semibold text-[#577C2A]">
+              <p className="text-sm sm:text-md mt-1 sm:mt-2 font-semibold text-[#577C2A]">
                 {item.name}
               </p>
             </div>
@@ -101,11 +111,11 @@ function AllRecordBoxCard({ year, month, monthlyCount }) {
         </div>
       </div>
 
-      <div className="bg-[#E6FFC7] rounded-lg mt-7 p-4">
-        <h1 className="text-[#314813] text-sm font-semibold">
+      <div className="bg-[#E6FFC7] rounded-lg mt-5 sm:mt-7 p-3 sm:p-4">
+        <h1 className="text-[#314813] text-xs sm:text-sm font-semibold">
           이번 달 인사이트
         </h1>
-        <p className="text-xs mt-4 leading-5">
+        <p className="text-xs sm:text-sm mt-2 sm:mt-4 leading-5">
           이번달은 총 {totalChars}글자 적으셨네요. <br />
           {message}
         </p>
