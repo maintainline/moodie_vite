@@ -35,7 +35,7 @@ export default function WeeklyCharCount() {
   }
 
   return (
-    <div className="bg-white w-96 rounded-lg shadow-md mt-8 mx-auto py-9 px-6 mb-14">
+    <div className="bg-white w-full max-w-[384px] rounded-lg shadow-md mt-8 mx-auto py-9 px-6 mb-14">
       <div className="justify-center text-center">
         <div className="text-base text-[#4E741D] font-semibold mb-8">
           이번 주 기록한 글자 수
@@ -48,7 +48,7 @@ export default function WeeklyCharCount() {
           </div>
         </div>
         <div className="bg-[#E6FFC7] w-full rounded-lg shadow-md py-5 px-6">
-          <p className="text-[12px] font-medium leading-5">{message} </p>
+          <p className="text-[12px] font-medium leading-5">{message}</p>
         </div>
       </div>
     </div>

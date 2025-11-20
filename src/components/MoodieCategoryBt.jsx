@@ -87,11 +87,12 @@ function MoodieCategoryBt() {
   }, [location.pathname]);
 
   return (
-    <div className="w-96 mx-auto">
+    <div className="w-full max-w-[384px] mx-auto px-4">
       {/* 메인 버튼 */}
-      <div className="flex justify-between w-96 mx-auto">
+
+      <div className="flex w-full">
         <button
-          className={`whitespace-nowrap text-xl font-semibold rounded-lg px-14 py-3 shadow ${
+          className={`flex-1 whitespace-nowrap text-lg sm:text-xl font-semibold rounded-lg py-3 shadow mx-1 ${
             activeMain === 0
               ? "bg-[#8dca41] text-white"
               : "bg-white text-[#6b9931]"
@@ -102,7 +103,7 @@ function MoodieCategoryBt() {
         </button>
 
         <button
-          className={`whitespace-nowrap text-xl font-semibold rounded-lg px-14 py-3 shadow ${
+          className={`flex-1 whitespace-nowrap text-lg sm:text-xl font-semibold rounded-lg py-3 shadow mx-1 ${
             activeMain === 1
               ? "bg-[#8dca41] text-white"
               : "bg-white text-[#6b9931]"
@@ -114,24 +115,22 @@ function MoodieCategoryBt() {
       </div>
 
       {/* 서브 버튼 */}
-      <div className="flex gap-1 w-96 mx-auto bg-[#8dca41] rounded-lg p-1 mt-2">
+      <div className="flex w-full bg-[#8dca41] rounded-lg p-1 mt-2 gap-1">
         <button
-          className={`text-lg font-semibold w-48 rounded-lg py-2 ${
-            activeSub === 0
-              ? "bg-white text-[#6b9931] shadow"
-              : "bg-[#8dca41] text-white"
-          }`}
+          className={`text-base sm:text-lg font-semibold rounded-lg py-2 flex-1
+      ${activeSub === 0 ? "bg-white text-[#6b9931] shadow" : "bg-[#8dca41] text-white"}
+      xs:text-sm xs:py-1
+    `}
           onClick={() => handleClickSub(0, "/weeklyrecord")}
         >
           주간 기록
         </button>
 
         <button
-          className={`text-lg font-semibold w-48 rounded-lg py-2 ${
-            activeSub === 1
-              ? "bg-white text-[#6b9931] shadow"
-              : "bg-[#8dca41] text-white"
-          }`}
+          className={`text-base sm:text-lg font-semibold rounded-lg py-2 flex-1
+      ${activeSub === 1 ? "bg-white text-[#6b9931] shadow" : "bg-[#8dca41] text-white"}
+      xs:text-sm xs:py-1
+    `}
           onClick={() => handleClickSub(1, "/allrecord")}
         >
           전체 기록

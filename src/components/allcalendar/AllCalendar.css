@@ -1,6 +1,8 @@
 .react-calendar {
   position: relative;
-  width: 390px;
+  width: 343px; /* iPhone SE 기준 */
+  max-width: 100%; /* 화면 작을 때 넘치지 않도록 */
+  margin: 0 auto;
   height: 100%;
   background: #fff;
   border: none;
@@ -11,13 +13,14 @@
 
 .react-calendar__navigation {
   position: absolute;
-  width: 390px;
+  width: 100%; /* fixed 390px → 100%로 */
   top: 0;
   transform: translateY(-35px);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .react-calendar__navigation__label {
   color: #314813 !important;
   position: absolute;
@@ -127,4 +130,13 @@
   display: inline-block; /* 크기 조정하려면 inline-block 또는 block 필요 */
   width: 30px; /* 원하는 너비 */
   text-align: center; /* 숫자 가운데 정렬 */
+}
+/* iPhone SE 모바일 전용 */
+@media screen and (max-width: 376px) {
+  .react-calendar__tile {
+    font-size: 25px; /* 글자만 축소 */
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 13px; /* 요일 글자만 축소 */
+  }
 }

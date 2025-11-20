@@ -39,14 +39,16 @@ export default function TodayInsight({ charCount = 0, diaryDate }) {
   }
 
   return (
-    <div className="bg-[#EBFFD3] w-96 mx-auto rounded-lg mb-7 py-6 px-4">
-      <h1 className="text-[#4E741D] justify-center text-center text-base font-semibold mb-4">
+    <div className="bg-[#EBFFD3] w-full max-w-[400px] mx-auto rounded-lg mb-7 py-6 px-4 overflow-hidden">
+      <h1 className="text-[#4E741D] text-center text-base font-semibold mb-4 break-words">
         {isToday(diaryDate) ? "오늘의 인사이트" : "이날의 인사이트"}
       </h1>
-      <div className="bg-white w-full rounded-lg shadow-md py-5 px-6">
-        <div className="flex justify-center gap-8 text-center">
-          <div>
-            <div className="text-[#31A0B9] font-bold text-5xl mb-2">
+
+      <div className="bg-white w-full rounded-lg shadow-md py-5 px-4 sm:px-6">
+        <div className="flex justify-center gap-6 sm:gap-10 text-center flex-wrap">
+          {/* 글자수 */}
+          <div className="min-w-[120px]">
+            <div className="text-[#31A0B9] font-bold text-5xl mb-2 leading-none">
               {charCount || 0}
               <span className="text-base text-[#4E741D]"> 자</span>
             </div>
@@ -54,8 +56,10 @@ export default function TodayInsight({ charCount = 0, diaryDate }) {
               {isToday(diaryDate) ? "오늘의 글자수" : "이날의 글자수"}
             </p>
           </div>
-          <div>
-            <div className="text-[#31A0B9] font-bold text-5xl mb-2">
+
+          {/* 주간 횟수 */}
+          <div className="min-w-[120px]">
+            <div className="text-[#31A0B9] font-bold text-5xl mb-2 leading-none">
               {weeklyCount}
               <span className="text-base text-[#4E741D]">번</span>
             </div>

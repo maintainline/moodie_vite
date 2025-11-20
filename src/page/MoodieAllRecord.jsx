@@ -49,8 +49,9 @@ function MoodieAllRecord() {
   return (
     <div>
       <div className="bg-[linear-gradient(180deg,rgba(247,255,237,1)_40%,rgba(208,249,157,1)_100%)] pt-20 pb-11">
-        {/*  카테고리 버튼 */}
+        {/* 카테고리 버튼 */}
         <MoodieCategoryBt />
+
         {/* 전체 캘린더 */}
         <AllCalendar
           currentDate={new Date()}
@@ -59,27 +60,29 @@ function MoodieAllRecord() {
             setCurrentMonth(month);
           }}
         />
-        {/* <WeekCalendar /> */}
-        {/* 주간 기록 현황 */}
+
+        {/* 월간 기록 현황 */}
         <div className="mt-11">
-          <h2 className="text-center text-[#314813] text-xl ">
+          <h2 className="text-center text-[#314813] text-xl sm:text-2xl px-4 sm:px-0">
             {currentMonth}월에는{" "}
             <span className="font-bold">
               총 {monthlyCount}개의 기록이 저장되었어요.
             </span>
           </h2>
         </div>
-        <div className="mt-3 mx-auto text-center text-[#314813] text-sm w-96 px-9">
+
+        <div className="mt-3 mx-auto text-center text-[#314813] text-sm sm:text-base w-[343px] sm:w-96 px-4 sm:px-9">
           <p>{diaryCountMessage}</p>
         </div>
       </div>
 
-      {/* 0 월 카드 박스 */}
-      <div className="mt-9">
+      {/* 월 카드 박스 */}
+      <div className="mt-9 px-4 sm:px-0">
         <AllRecordBoxCard
           year={currentYear}
           month={currentMonth}
           monthlyCount={monthlyCount}
+          className="w-[343px] sm:w-96 mx-auto"
         />
       </div>
     </div>

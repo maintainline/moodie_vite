@@ -7,7 +7,7 @@ export default function MonthWeekTitle({ date = new Date() }) {
   const week = getWeekOfMonth(date);
 
   return (
-    <h2 className="font-semibold text-3xl text-[#314813] mt-12 text-center mb-7">
+    <h2 className="font-semibold text-2xl  sm:text-3xl text-[#314813] mt-12 text-center mb-7">
       {month}월 {week}주차 기록
     </h2>
   );

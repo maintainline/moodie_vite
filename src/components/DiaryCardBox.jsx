@@ -56,17 +56,17 @@ function DiaryCardBox() {
         return (
           <div
             key={diary.id}
-            className="w-96 mx-auto mt-3 bg-white rounded-lg shadow-md cursor-pointer"
+            className="w-[343px] sm:w-96 mx-auto mt-3 bg-white rounded-lg shadow-md cursor-pointer"
             onClick={() =>
               navigate(`/diary/${diary.id}`, {
                 state: { fromWeekCalendar: true },
               })
             }
           >
-            <div className="flex p-4 gap-4">
+            <div className="flex p-4 gap-3 sm:gap-4">
               {/* 이미지 박스 */}
               <div
-                className={`flex justify-center items-center rounded-full w-20 h-20 border ${
+                className={`flex justify-center items-center rounded-full w-16 sm:w-20 h-16 sm:h-20 border ${
                   diary.main_emotion === "슬픔"
                     ? "border-[#4D7BAF] bg-white"
                     : diary.main_emotion === "기쁨"
@@ -82,13 +82,13 @@ function DiaryCardBox() {
                   <img
                     src={emotionIcon}
                     alt={diary.main_emotion}
-                    className="w-14"
+                    className="w-12 sm:w-14"
                   />
                 )}
               </div>
 
               {/* 텍스트 박스 */}
-              <div className="w-64 ">
+              <div className="flex-1 min-w-0">
                 {/* 상단: 감정 뱃지 + 날짜 */}
                 <div className="flex justify-between items-center pt-1">
                   <div
@@ -113,10 +113,10 @@ function DiaryCardBox() {
 
                 {/* 제목/부제목 */}
                 <div className="mt-2">
-                  <div className="text-xs font-semibold text-[#4E741D]">
+                  <div className="text-xs sm:text-sm font-semibold text-[#4E741D] truncate">
                     {randomTitle}
                   </div>
-                  <div className="mt-1 text-xs font-normal text-left whitespace-nowrap overflow-hidden text-ellipsis">
+                  <div className="mt-1 text-xs sm:text-sm font-normal text-left truncate">
                     {diary.content}
                   </div>
                 </div>

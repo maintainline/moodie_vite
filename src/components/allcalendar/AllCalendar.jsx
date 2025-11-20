@@ -83,13 +83,15 @@ const AllCalendar = ({ currentDate, onMonthChange }) => {
 
   return (
     <div className="flex justify-center mt-20">
-      <div className="relative">
+      <div className="relative w-[343px] sm:w-[768px] lg:w-[960px] mx-auto">
         <Calendar
           value={activeDate}
           onActiveStartDateChange={handleActiveStartDateChange}
-          navigationLabel={({ date }) =>
-            `${activeDate.getFullYear()}년 ${activeDate.getMonth() + 1}월 기록`
-          }
+          navigationLabel={({ date }) => (
+            <span className="text-lg sm:text-xl lg:text-2xl font-semibold text-[#314813]">
+              {activeDate.getFullYear()}년 {activeDate.getMonth() + 1}월 기록
+            </span>
+          )}
           prevLabel={
             <span className="custom-button">
               {activeDate.getMonth() === 0 ? 12 : activeDate.getMonth()}월
@@ -115,7 +117,7 @@ const AllCalendar = ({ currentDate, onMonthChange }) => {
                 <img
                   src={emotionIcon}
                   alt={dayMood.main_emotion}
-                  className="absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 cursor-pointer"
+                  className="absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 sm:w-10 h-8 sm:h-10 cursor-pointer"
                   onClick={() => handleEmojiClick(dateStr)}
                 />
               ) : null;
