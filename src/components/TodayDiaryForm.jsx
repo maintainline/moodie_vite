@@ -47,7 +47,12 @@ function TodayDiaryForm() {
       char_count: content.length,
     };
 
-    const { error } = await supabase.from("diaries").insert(newDiary);
+    // 🔥 insert 후 생성된 row 반환
+    const { data, error } = await supabase
+      .from("diaries")
+      .insert(newDiary)
+      .select("*")
+      .single();
 
     setLoading(false);
 
@@ -58,7 +63,13 @@ function TodayDiaryForm() {
     }
 
     alert("감정 기록이 저장되었습니다!");
-    navigate("/diary");
+
+    navigate(`/diary/${data.id}`, {
+      state: {
+        fromWeekCalendar: true, // 오늘의 인사이트 표시
+        fromWeek: false,
+      },
+    });
   };
 
   return (
